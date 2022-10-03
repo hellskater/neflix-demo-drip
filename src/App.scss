@@ -249,6 +249,7 @@ p {
     left: 0;
     width: 100%;
     transform: rotate(180deg);
+    text-decoration: none;
   }
 }
 
@@ -330,6 +331,8 @@ p {
   overflow: hidden;
   margin-right: 10px;
   transition: background 1s ease;
+  text-decoration: none !important;
+
 
   &:nth-child(n + 6) {
     margin-top: 20px;
@@ -347,6 +350,7 @@ p {
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.125s ease;
+    color: white;
 
     .title {
       font-size: 22px;

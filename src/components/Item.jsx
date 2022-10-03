@@ -2,12 +2,23 @@ import React from "react";
 import ListToggle from "./ListToggle";
 import { Link } from "react-router-dom";
 
-const Item = ({ backdrop, title, score, overview, titleId }) => {
-  console.log(titleId);
+const Item = ({
+  backdrop,
+  title,
+  score,
+  overview,
+  titleId,
+  isTV,
+  mediaType,
+}) => {
   return (
     <Link
       className="Item"
-      to={`/movie/${titleId.id}`}
+      to={
+        mediaType === "tv" || isTV
+          ? `/tv/${titleId.id}`
+          : `/movie/${titleId.id}`
+      }
       style={{ backgroundImage: "url(" + backdrop + ")" }}
     >
       <div className="overlay">

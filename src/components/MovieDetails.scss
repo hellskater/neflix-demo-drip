@@ -1,0 +1,24 @@
+.movieDetailsContainer {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  .bannerImg {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  .playIcon {
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 300px;
+    width: 300px;
+    object-fit: contain;
+    color: rgb(231, 228, 228);
+    cursor: pointer;
+  }
+}
