@@ -3,11 +3,14 @@ import Header from "./Header";
 import Hero from "./Hero";
 import axios from "axios";
 import TitleList from "./TitleList";
+import ConnectWalletPopup from "./ConnectWalletPopup";
+import { useWalletAddress } from "../hooks/useWalletAddress";
 
 function Home() {
   const apiKey = "87dfa1c669eea853da609d4968d294be";
   const [data, setData] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const { isWalletConnectModalOpen, handleWalletModal } = useWalletAddress();
 
   useEffect(() => {
     if (searchText.length === 0) setData([]);
@@ -73,6 +76,10 @@ function Home() {
           />
         </>
       )}
+      <ConnectWalletPopup
+        isOpen={isWalletConnectModalOpen}
+        onClose={() => handleWalletModal(false)}
+      />
     </div>
   );
 }

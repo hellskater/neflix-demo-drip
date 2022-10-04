@@ -1,39 +1,46 @@
-import React from "react";
+import React, { useEffect } from "react";
+import useMetaMaskConnect from "../hooks/useMetamaskConnect";
+import { useWalletAddress } from "../hooks/useWalletAddress";
+import { ethers } from "ethers";
 
 const UserProfile = () => {
+  const { defaultAddress, changeAddress } = useWalletAddress();
+  const { connectWallet } = useMetaMaskConnect();
+
+  useEffect(() => {
+    async function readAddress() {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const accounts = await provider.listAccounts();
+
+      return accounts[0];
+    }
+    const setAddress = async () => {
+      const selectedAddress = await readAddress();
+      changeAddress(selectedAddress);
+    };
+
+    setAddress();
+  }, []);
+
   return (
     <div className="UserProfile">
-      <div className="User">
-        <div className="name">Charlie Puth</div>
-        <div className="image">
-          <img src="https://cdn.justjaredjr.com/wp-content/uploads/headlines/2022/05/charlie-puth-comments-on-labels-needing-artists-to-go-viral-on-tiktok-after-halsey-speaks-out.jpg" />
+      {defaultAddress ? (
+        <div className="walletContainer">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/MetaMask_Fox.svg/1024px-MetaMask_Fox.svg.png?20220831120339"
+            alt="metamask logo"
+            className="metamaskLogo"
+          />
+          <p className="walletAddress m-0">
+            {defaultAddress?.substring(0, 6)}...
+            {defaultAddress?.substring(defaultAddress.length - 5)}
+          </p>
         </div>
-      </div>
-      <div className="UserProfile-menu">
-        <div className="UserProfileSwitch">
-          <ul>
-            <li>
-              <div className="UserProfile-image">
-                <img src="http://lorempixel.com/96/96" />
-              </div>
-              <div className="UserProfile-name">Tony</div>
-            </li>
-            <li>
-              <div className="UserProfile-image">
-                <img src="http://lorempixel.com/96/96" />
-              </div>
-              <div className="UserProfile-name">Stark</div>
-            </li>
-          </ul>
+      ) : (
+        <div className="connectWallet" onClick={connectWallet}>
+          Connect Wallet
         </div>
-        <div className="UserNavigation">
-          <ul>
-            <li>Your Account</li>
-            <li>Help Center</li>
-            <li>Sign out of Netflix</li>
-          </ul>
-        </div>
-      </div>
+      )}
     </div>
   );
 };

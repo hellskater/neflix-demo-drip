@@ -67,7 +67,7 @@ const MovieDetails = () => {
         </p>
         <div className="runInfo">
           <FaPlay />
-          <p className="mins">{data.runtime}+ mins</p>
+          <p className="mins m-0">{data.runtime}+ mins</p>
         </div>
       </div>
       <ImPlay2 className="playIcon" />
