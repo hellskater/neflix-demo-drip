@@ -14,8 +14,17 @@ const UserProfile = () => {
 
       return accounts[0];
     }
+    async function getNetwork() {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const accounts = await provider.listAccounts();
+      const network = await provider.getNetwork(accounts[0]);
+
+      return network;
+    }
     const setAddress = async () => {
       const selectedAddress = await readAddress();
+      const network = await getNetwork();
+      console.log(network)
       changeAddress(selectedAddress);
     };
 
