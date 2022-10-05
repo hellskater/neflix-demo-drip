@@ -13,7 +13,7 @@ const MovieDetails = () => {
 
   const apiKey = "87dfa1c669eea853da609d4968d294be";
 
-  console.log(data);
+  // console.log(data);
 
   useEffect(() => {
     loadContent();

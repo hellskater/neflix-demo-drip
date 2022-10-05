@@ -6,22 +6,25 @@ import DripNftModal from "./DripNftModal";
 
 const ProtectedRoute = ({ children }) => {
   const { defaultAddress, handleWalletModal } = useWalletAddress();
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    // const fetchAccess = async () => {
-    //   const res = await axios.get(
-    //     "https://api.dripverse.org/nft/18/" + defaultAddress?.toLowerCase()
-    //   );
+    const fetchAccess = async () => {
+      let res;
 
-    //   console.log(res);
-    // };
+      try {
+        res = await axios.get(
+          "https://api.dripverse.org/v1/nft/1/" + defaultAddress?.toLowerCase()
+        );
+      } catch {
+        setIsModalOpen(true);
+      }
+    };
 
-    // fetchAccess();
-    setIsModalOpen(true);
+    fetchAccess();
 
     return () => setIsModalOpen(false);
-  }, []);
+  }, [defaultAddress]);
 
   if (!defaultAddress) {
     handleWalletModal(true);
