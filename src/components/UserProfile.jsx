@@ -23,8 +23,8 @@ const UserProfile = () => {
     }
     const setAddress = async () => {
       const selectedAddress = await readAddress();
-      const network = await getNetwork();
-      console.log(network)
+      // const network = await getNetwork();
+      // console.log(network)
       changeAddress(selectedAddress);
     };
 
