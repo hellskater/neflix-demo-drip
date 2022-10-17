@@ -5,11 +5,7 @@ import { useWalletAddress } from "../hooks/useWalletAddress";
 import DripNftModal from "./DripNftModal";
 import DripSDK from "dripverse";
 
-const drip = new DripSDK({
-  network: "alpha",
-  key: "RANDOM_KEY",
-  project: "5",
-});
+const drip = new DripSDK("947c16d608b9f95fa7d51499605c9b9a36e87a71");
 
 const ProtectedRoute = ({ children }) => {
   const { defaultAddress, handleWalletModal } = useWalletAddress();
@@ -46,11 +42,9 @@ const ProtectedRoute = ({ children }) => {
     // fetchAccess();
 
     const verifyAccess = async () => {
-      const res = await drip.verifyUtility(7, defaultAddress?.toLowerCase());
-
-      if (res) {
-        return;
-      } else {
+      try {
+        const res = await drip.hasAccess(defaultAddress?.toLowerCase(), 2);
+      } catch {
         setIsModalOpen(true);
       }
     };
