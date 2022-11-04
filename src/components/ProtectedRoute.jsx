@@ -43,7 +43,7 @@ const ProtectedRoute = ({ children }) => {
 
     const verifyAccess = async () => {
       try {
-        const res = await drip.hasAccess(defaultAddress?.toLowerCase(), 2);
+        const res = await drip.hasAccess(defaultAddress?.toLowerCase(), 3);
       } catch {
         setIsModalOpen(true);
       }
