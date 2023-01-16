@@ -9,7 +9,7 @@ const CustomModal = ({
   size,
 }) => {
   const modalClassNames = {
-    modal: `bg-glass-light to-purple-500 ${size} rounded-2xl p-0 overflow-scroll z-[99999]`,
+    modal: `bg-glass-light to-purple-500 ${size} rounded-2xl p-0 overflow-hidden z-[99999]`,
     header: "hidden",
     body: "h-full w-full overflow-hidden",
   };
