@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { useWalletAddress } from "../hooks/useWalletAddress";
 import DripNftModal from "./DripNftModal";
-import DripSDK from "dripverse";
+import { DripSDK } from "dripverse";
 
-const drip = new DripSDK("1ec15db2d6ff86ddee885d201006ff26da5931af", "alpha");
-const UTILITY_ID = 3;
+const drip = new DripSDK("59dca3a6d5855c66f4c6c032ff99dd51d3dcf220", "alpha");
+const UTILITY_ID = 2;
 
 const ProtectedRoute = ({ children }) => {
   const { defaultAddress, handleWalletModal } = useWalletAddress();
@@ -42,10 +42,10 @@ const ProtectedRoute = ({ children }) => {
     // fetchAccess();
 
     const verifyAccess = async () => {
-      try {
-        await drip.hasAccess(defaultAddress?.toLowerCase(), UTILITY_ID);
-      } catch (err) {
-        console.error(err);
+      let allowed;
+      allowed = await drip.hasAccess(defaultAddress?.toLowerCase(), UTILITY_ID);
+      console.log(allowed);
+      if (!allowed) {
         setIsModalOpen(true);
       }
     };
