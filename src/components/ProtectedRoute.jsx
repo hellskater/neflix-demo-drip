@@ -5,8 +5,8 @@ import { useWalletAddress } from "../hooks/useWalletAddress";
 import DripNftModal from "./DripNftModal";
 import { DripSDK } from "dripverse";
 
-const drip = new DripSDK("59dca3a6d5855c66f4c6c032ff99dd51d3dcf220", "alpha");
-const UTILITY_ID = 2;
+const drip = new DripSDK("a8b9945ad27e458423cea96b80483ea6414cbe43");
+const UTILITY_ID = 1;
 
 const ProtectedRoute = ({ children }) => {
   const { defaultAddress, handleWalletModal } = useWalletAddress();
